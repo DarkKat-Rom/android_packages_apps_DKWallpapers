@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!--
-     Copyright (C) 2011-2014 The CyanogenMod Project
+<!-- Copyright (C) 2011-2014 The CyanogenMod Project
+
+     Copyright (C) 2017 DarkKat
 
      Licensed under the Apache License, Version 2.0 (the "License");
      you may not use this file except in compliance with the License.
@@ -16,6 +17,22 @@
 -->
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">DarkKat Wallpapers</string>
+    <string name="color_wallpaper_title">Color wallpaper</string>
     <string name="set_wallpaper">Set wallpaper</string>
-    <string name="no_wallpaper">No wallpaper</string>
+
+    <string name="customize_title">Customize</string>
+    <string name="use_gradient_title">Color gradient</string>
+    <string name="use_gradient_summary">Enable to use a color gradient as background</string>
+    <string name="gradient_orientation_title">Color gradient orientation</string>
+    <string name="gradient_orientation_summary">%s</string>
+    <string name="gradient_orientation_left_right">Left to right</string>
+    <string name="gradient_orientation_top_left_bottom_right">Top left to bottom right</string>
+    <string name="gradient_orientation_top_bottom">Top to bottom</string>
+    <string name="gradient_orientation_top_right_bottom_left">Top right to bottom left</string>
+    <string name="use_center_color_title">Use center color</string>
+    <string name="use_center_color_summary">Enable to use a center color for the color gradient</string>
+    <string name="start_color_title">Start color</string>
+    <string name="color_title">Color</string>
+    <string name="center_color_title">Center color</string>
+    <string name="end_color_title">End color</string>
 </resources>

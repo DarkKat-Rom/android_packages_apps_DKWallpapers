@@ -13,12 +13,19 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
+<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
 
-<resources>
+    <string-array name="gradient_orientation_entries">
+        <item>@string/gradient_orientation_left_right</item>
+        <item>@string/gradient_orientation_top_left_bottom_right</item>
+        <item>@string/gradient_orientation_top_bottom</item>
+        <item>@string/gradient_orientation_top_right_bottom_left</item>
+    </string-array>
 
-    <style name="CustomizeTheme" parent="@android:style/Theme.Material.Settings">
-        <item name="android:colorPrimary">@color/theme_primary</item>
-        <item name="android:colorPrimaryDark">@color/theme_primary_dark</item>
-        <item name="android:colorAccent">@color/theme_accent</item>
-    </style>
+    <string-array name="gradient_orientation_values" translatable="false">
+        <item>0</item>
+        <item>1</item>
+        <item>2</item>
+        <item>3</item>
+    </string-array>
 </resources>
