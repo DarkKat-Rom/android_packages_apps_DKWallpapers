@@ -18,6 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">DarkKat-Hintergrundbilder</string>
     <string name="color_wallpaper_title">Farbiger Hintergrund</string>
+    <string name="pick_color_title">Farbe wählen</string>
     <string name="set_wallpaper">Hintergrund festlegen</string>
 
     <string name="customize_title">Anpassen</string>

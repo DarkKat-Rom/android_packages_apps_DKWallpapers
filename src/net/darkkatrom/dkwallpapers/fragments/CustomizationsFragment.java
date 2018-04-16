@@ -16,21 +16,14 @@
 
 package net.darkkatrom.dkwallpapers.fragments;
 
-import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
-import android.preference.Preference;
-import android.preference.PreferenceFragment;
-import android.preference.PreferenceScreen;
-import android.preference.SwitchPreference;
 
-import net.darkkatrom.dkcolorpicker.fragment.ColorPickerFragment;
-import net.darkkatrom.dkcolorpicker.preference.ColorPickerPreference;
+import net.darkkatrom.dkcolorpicker.fragment.SettingsColorPickerFragment;
 import net.darkkatrom.dkwallpapers.R;
 import net.darkkatrom.dkwallpapers.utils.PreferenceUtils;
 
-public class CustomizationsFragment extends PreferenceFragment implements
+public class CustomizationsFragment extends SettingsColorPickerFragment implements
         SharedPreferences.OnSharedPreferenceChangeListener {
 
     @Override
@@ -43,22 +36,6 @@ public class CustomizationsFragment extends PreferenceFragment implements
 
         if (!PreferenceUtils.getInstance(getActivity()).getUseGradient()) {
             findPreference(PreferenceUtils.START_COLOR).setTitle(R.string.color_title);
-        }
-    }
-
-    @Override
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == ColorPickerPreference.RESULT_REQUEST_CODE
-                && resultCode == Activity.RESULT_OK) {
-            Bundle extras = data.getExtras();
-            String extraNewColor = ColorPickerFragment.KEY_NEW_COLOR;
-            if (extras != null && extras.getInt(extraNewColor) != 0) {
-                String extraPrefKey = ColorPickerPreference.PREFERENCE_KEY;
-                ((ColorPickerPreference) findPreference(extras.getString(extraPrefKey)))
-                        .setNewColor(extras.getInt(extraNewColor));
-            }
         }
     }
 

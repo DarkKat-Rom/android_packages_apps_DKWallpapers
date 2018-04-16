@@ -24,6 +24,10 @@
             android:label="@string/customize_title"
             android:theme="@style/CustomizeTheme" />
 
+        <activity
+            android:name="net.darkkatrom.dkcolorpicker.ColorPickerActivity"
+            android:label="@string/pick_color_title" />
+
         <receiver android:name=".PartnerWallpapers">
             <intent-filter>
                 <action android:name="com.android.launcher3.action.PARTNER_CUSTOMIZATION"/>
