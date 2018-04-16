@@ -16,24 +16,23 @@
 
 package net.darkkatrom.dkwallpapers;
 
+import android.app.Activity;
+import android.app.Fragment;
+import android.app.FragmentTransaction;
 import android.os.Bundle;
 import android.preference.Preference;
-import android.preference.PreferenceActivity;
 import android.preference.PreferenceFragment;
 
-import net.darkkatrom.dkcolorpicker.fragment.ColorPickerFragment;
 import net.darkkatrom.dkcolorpicker.preference.ColorPickerPreference;
 import net.darkkatrom.dkwallpapers.fragments.CustomizationsFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class CustomizationsActivity extends PreferenceActivity {
+public class CustomizationsActivity extends Activity implements
+        PreferenceFragment.OnPreferenceStartFragmentCallback {
 
-    private static final String[] ENTRY_FRAGMENTS = {
-        ColorPickerFragment.class.getName(),
-        CustomizationsFragment.class.getName(),
-    };
+    public static final String EXTRA_SHOW_FRAGMENT = ":android:show_fragment";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,11 +57,21 @@ public class CustomizationsActivity extends PreferenceActivity {
         return true;
     }
 
-    @Override
-    protected boolean isValidFragment(String fragmentName) {
-        for (int i = 0; i < ENTRY_FRAGMENTS.length; i++) {
-            if (ENTRY_FRAGMENTS[i].equals(fragmentName)) return true;
+    public void startPreferencePanel(String fragmentClass, Bundle args, int titleRes,
+        CharSequence titleText, Fragment resultTo, int resultRequestCode) {
+        Fragment f = Fragment.instantiate(this, fragmentClass, args);
+        if (resultTo != null) {
+            f.setTargetFragment(resultTo, resultRequestCode);
         }
-        return super.isValidFragment(fragmentName);
+        FragmentTransaction transaction = getFragmentManager().beginTransaction();
+        transaction.replace(android.R.id.content, f);
+        if (titleRes != 0) {
+            transaction.setBreadCrumbTitle(titleRes);
+        } else if (titleText != null) {
+            transaction.setBreadCrumbTitle(titleText);
+        }
+        transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        transaction.addToBackStack(null);
+        transaction.commitAllowingStateLoss();
     }
 }

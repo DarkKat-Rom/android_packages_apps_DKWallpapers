@@ -18,6 +18,7 @@
 <resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
     <string name="app_name">DarkKat Wallpapers</string>
     <string name="color_wallpaper_title">Color wallpaper</string>
+    <string name="pick_color_title">Pick color</string>
     <string name="set_wallpaper">Set wallpaper</string>
 
     <string name="customize_title">Customize</string>
