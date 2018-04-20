@@ -20,7 +20,10 @@
     <string name="color_wallpaper_title">Farbiger Hintergrund</string>
     <string name="pick_color_title">Farbe wählen</string>
     <string name="set_wallpaper">Hintergrund festlegen</string>
-
+    <string name="dialog_item_home_screen">Startbildschirm</string>
+    <string name="dialog_item_lock_screen">Sperrbildschirm</string>
+    <string name="dialog_item_home_and_lock_screen">Start- und Sperrbildschirm</string>
+    <string name="dialog_cancel_title">Abbrechen</string>
     <string name="customize_title">Anpassen</string>
     <string name="use_gradient_title">Farbverlauf</string>
     <string name="use_gradient_summary">Aktivieren um einen Farbverlauf als Hintergrund zu benutzen</string>
