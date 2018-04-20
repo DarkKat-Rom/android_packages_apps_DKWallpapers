@@ -17,7 +17,9 @@
 package net.darkkatrom.dkwallpapers;
 
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.app.WallpaperManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
@@ -57,22 +59,43 @@ public class ColorWallpaperActivity extends Activity {
 
     private void setPreviewBackground() {
         mPreviewRoot.setBackground(null);
+        mBackground = new GradientDrawable();
+        mBackground.mutate();
         if (!mUtils.getUseGradient()) {
-            mPreviewRoot.setBackgroundColor(mUtils.getBackgroundColor());
+            mBackground.setColor(mUtils.getBackgroundColor());
         } else {
-            if (mBackground == null) {
-                mBackground = new GradientDrawable();
-            }
             mBackground.setOrientation(mUtils.getGradientDrawableOrientation());
             mBackground.setColors(mUtils.getBackgroundColors());
-            mPreviewRoot.setBackground(mBackground);
         }
+        mPreviewRoot.setBackground(mBackground);
     }
 
-    public void setWallpaper(View v) {
+    public void showWhichWallpaperDialog(View v) {
         if (mBackground == null) {
             return;
         }
+        new AlertDialog.Builder(this)
+                .setTitle(R.string.set_wallpaper)
+                .setItems(R.array.dialog_items, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int selectedItemIndex) {
+                        int whichWallpaper;
+                        if (selectedItemIndex == 0) {
+                            whichWallpaper = WallpaperManager.FLAG_SYSTEM;
+                        } else if (selectedItemIndex == 1) {
+                            whichWallpaper = WallpaperManager.FLAG_LOCK;
+                        } else {
+                            whichWallpaper = WallpaperManager.FLAG_SYSTEM
+                                    | WallpaperManager.FLAG_LOCK;
+                        }
+                        setWallpaper(whichWallpaper);
+                    }
+                })
+                .setNegativeButton(R.string.dialog_cancel_title, null)
+                .show();
+    }
+
+    private void setWallpaper(int flag) {
         WallpaperManager wm = WallpaperManager.getInstance(this);
         int width = mPreviewRoot.getWidth();
         int height = (int) (wm.getDesiredMinimumHeight());
@@ -116,8 +139,7 @@ public class ColorWallpaperActivity extends Activity {
         c.drawRect(0, 0, height, height, paint);
 
         try {
-            wm.setBitmap(wallpaperBitmap, null, true, WallpaperManager.FLAG_SYSTEM);
-            wm.setBitmap(wallpaperBitmap, null, true, WallpaperManager.FLAG_LOCK);
+            wm.setBitmap(wallpaperBitmap, null, true, flag);
         } catch (java.io.IOException e) {
         }
 

@@ -20,7 +20,10 @@
     <string name="color_wallpaper_title">Color wallpaper</string>
     <string name="pick_color_title">Pick color</string>
     <string name="set_wallpaper">Set wallpaper</string>
-
+    <string name="dialog_item_home_screen">Home screen</string>
+    <string name="dialog_item_lock_screen">Lock screen</string>
+    <string name="dialog_item_home_and_lock_screen">Home screen and lock screen</string>
+    <string name="dialog_cancel_title">Cancel</string>
     <string name="customize_title">Customize</string>
     <string name="use_gradient_title">Color gradient</string>
     <string name="use_gradient_summary">Enable to use a color gradient as background</string>

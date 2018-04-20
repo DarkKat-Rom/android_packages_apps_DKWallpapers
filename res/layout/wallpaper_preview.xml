@@ -38,7 +38,7 @@
                 android:layout_gravity="center_vertical"
                 android:text="@string/set_wallpaper"
                 android:textColor="@color/wallpaper_preview_button_bar_button_text_color"
-                android:onClick="setWallpaper" />
+                android:onClick="showWhichWallpaperDialog" />
 
             <Button
                 style="?android:attr/buttonBarButtonStyle"
