@@ -34,12 +34,14 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomizationsActivity extends Activity implements
-        PreferenceFragment.OnPreferenceStartFragmentCallback {
+        PreferenceFragment.OnPreferenceStartFragmentCallback, ColorPickerPreference.OwnerActivity {
 
     public static final String EXTRA_SHOW_FRAGMENT = ":android:show_fragment";
 
-    private boolean mUseOptionalLightStatusBar;
-    private boolean mUseOptionalLightNavigationBar;
+    private int mThemeResId = 0;
+    private boolean mIsWhiteoutTheme = false;
+    private boolean mUseOptionalLightStatusBar = false;
+    private boolean mUseOptionalLightNavigationBar = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,31 +60,30 @@ public class CustomizationsActivity extends Activity implements
                 && ThemeHelper.useLightStatusBar(this);
         mUseOptionalLightNavigationBar = ThemeHelper.themeSupportsOptionalĹightNB(this)
                 && ThemeHelper.useLightNavigationBar(this);
-        int themeResId = 0;
 
         if (mUseOptionalLightStatusBar && mUseOptionalLightNavigationBar) {
-            themeResId = R.style.ThemeOverlay_LightStatusBar_LightNavigationBar;
+            mThemeResId = R.style.ThemeOverlay_LightStatusBar_LightNavigationBar;
         } else if (mUseOptionalLightStatusBar) {
-            themeResId = R.style.ThemeOverlay_LightStatusBar;
+            mThemeResId = R.style.ThemeOverlay_LightStatusBar;
         } else if (mUseOptionalLightNavigationBar) {
-            themeResId = R.style.ThemeOverlay_LightNavigationBar;
+            mThemeResId = R.style.ThemeOverlay_LightNavigationBar;
         } else {
-            themeResId = R.style.CustomizeTheme;
+            mThemeResId = R.style.CustomizeTheme;
         }
-        setTheme(themeResId);
+        setTheme(mThemeResId);
 
         int oldFlags = getWindow().getDecorView().getSystemUiVisibility();
         int newFlags = oldFlags;
         if (!mUseOptionalLightStatusBar) {
             // Possibly we are using the Whiteout theme
-            boolean isWhiteoutTheme =
+            mIsWhiteoutTheme =
                     ThemeHelper.getTheme(this) == UiModeManager.MODE_NIGHT_NO_WHITEOUT;
             boolean isLightStatusBar = (newFlags & View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR)
                     == View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             // Check if light status bar flag was set,
             // and we are not using the Whiteout theme,
             // (Whiteout theme should always use a light status bar).
-            if (isLightStatusBar && !isWhiteoutTheme) {
+            if (isLightStatusBar && !mIsWhiteoutTheme) {
                 // Remove flag
                 newFlags &= ~View.SYSTEM_UI_FLAG_LIGHT_STATUS_BAR;
             }
@@ -143,5 +144,25 @@ public class CustomizationsActivity extends Activity implements
         transaction.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
         transaction.addToBackStack(null);
         transaction.commitAllowingStateLoss();
+    }
+
+    @Override
+    public int getCurentThemeResId() {
+        return mThemeResId;
+    }
+
+    @Override
+    public boolean isWhiteoutTheme() {
+        return mIsWhiteoutTheme;
+    }
+
+    @Override
+    public boolean useOptionalLightStatusBar() {
+        return mUseOptionalLightStatusBar;
+    }
+
+    @Override
+    public boolean useOptionalLightNavigationBar() {
+        return mUseOptionalLightNavigationBar;
     }
 }
