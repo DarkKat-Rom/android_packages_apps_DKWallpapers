@@ -41,7 +41,8 @@
 
         <activity
             android:name="net.darkkatrom.dkcolorpicker.ColorPickerActivity"
-            android:label="@string/pick_color_title" />
+            android:label="@string/pick_color_title"
+            android:theme="@style/CustomizeTheme" />
 
         <receiver android:name=".PartnerWallpapers">
             <intent-filter>
