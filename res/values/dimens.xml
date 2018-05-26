@@ -14,5 +14,10 @@
      limitations under the License.
 -->
 <resources>
+    <!-- Bottom margin of the wallpaper preview button bar when on portrait mode,
+         (this is the height of the navigation bar) -->
     <dimen name="wallpaper_preview_button_bar_margin_bottom">48dp</dimen>
+    <!-- End margin of the wallpaper preview button bar when on landscape mode,
+         (this is the width of the vertically navigation bar) -->
+    <dimen name="wallpaper_preview_button_bar_margin_end">48dp</dimen>
 </resources>
