@@ -23,7 +23,7 @@
         android:key="use_gradient"
         android:title="@string/use_gradient_title"
         android:summary="@string/use_gradient_summary"
-        android:defaultValue="false" />
+        android:defaultValue="true" />
 
     <ListPreference
         android:key="gradient_orientation"
@@ -31,34 +31,33 @@
         android:summary="@string/gradient_orientation_summary"
         android:entries="@array/gradient_orientation_entries"
         android:entryValues="@array/gradient_orientation_values"
-        android:defaultValue="2"
-        android:dependency="use_gradient" />
+        android:defaultValue="2" />
 
     <SwitchPreference
-        android:key="use_center_color"
-        android:title="@string/use_center_color_title"
-        android:summary="@string/use_center_color_summary"
-        android:defaultValue="false"
-        android:dependency="use_gradient" />
+        android:key="gradient_use_center"
+        android:title="@string/gradient_use_center_title"
+        android:summary="@string/gradient_use_center_summary"
+        android:defaultValue="true" />
 
     <net.darkkatrom.dkcolorpicker.preference.ColorPickerPreference
-        android:key="start_color"
-        android:title="@string/start_color_title"
-        app:defaultColor="#ff000000"
-        app:resetColor1="#ff000000" />
+        android:key="color_solid_gradient_start"
+        android:title="@string/gradient_start_title"
+        app:pickerSubtitle="@string/gradient_start_title"
+        app:defaultColor="@color/wallpaper_default"
+        app:resetColor1="@color/wallpaper_default" />
 
     <net.darkkatrom.dkcolorpicker.preference.ColorPickerPreference
-        android:key="center_color"
-        android:title="@string/center_color_title"
-        app:defaultColor="#00000000"
-        app:resetColor1="#00000000"
-        android:dependency="use_center_color" />
+        android:key="gradient_center"
+        android:title="@string/gradient_center_title"
+        app:pickerSubtitle="@string/gradient_center_title"
+        app:defaultColor="@color/wallpaper_default_center"
+        app:resetColor1="@color/wallpaper_default_center" />
 
     <net.darkkatrom.dkcolorpicker.preference.ColorPickerPreference
-        android:key="end_color"
-        android:title="@string/end_color_title"
-        app:defaultColor="#00000000"
-        app:resetColor1="#00000000"
-        android:dependency="use_gradient" />
+        android:key="gradient_end"
+        android:title="@string/gradient_end_title"
+        app:pickerSubtitle="@string/gradient_end_title"
+        app:defaultColor="@color/wallpaper_default_end"
+        app:resetColor1="@color/wallpaper_default_end" />
 
 </PreferenceScreen>

@@ -16,10 +16,12 @@
 
 package net.darkkatrom.dkwallpapers.fragments;
 
+import android.preference.PreferenceScreen;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import net.darkkatrom.dkcolorpicker.fragment.SettingsColorPickerFragment;
+import net.darkkatrom.dkcolorpicker.preference.ColorPickerPreference;
 import net.darkkatrom.dkwallpapers.R;
 import net.darkkatrom.dkwallpapers.utils.PreferenceUtils;
 
@@ -29,23 +31,50 @@ public class CustomizationsFragment extends SettingsColorPickerFragment implemen
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        updatePreferenceScreen();
+    }
 
+    public void updatePreferenceScreen() {
+        PreferenceScreen prefs = getPreferenceScreen();
+        if (prefs != null) {
+            prefs.removeAll();
+        }
         addPreferencesFromResource(R.xml.customize);
 
-        PreferenceUtils.getInstance(getActivity()).setOnSharedPreferenceChangeListener(this);
-
         if (!PreferenceUtils.getInstance(getActivity()).getUseGradient()) {
-            findPreference(PreferenceUtils.START_COLOR).setTitle(R.string.color_title);
+            findPreference(PreferenceUtils.COLOR_SOLID_GRADIENT_START)
+                    .setTitle(R.string.color_solid_title);
+            ((ColorPickerPreference) findPreference(PreferenceUtils.COLOR_SOLID_GRADIENT_START))
+                    .setPickerSubtitle(null);
+            removePreference(PreferenceUtils.GRADIENT_ORIENTATION);
+            removePreference(PreferenceUtils.GRADIENT_USE_CENTER);
+            removePreference(PreferenceUtils.GRADIENT_CENTER);
+            removePreference(PreferenceUtils.GRADIENT_END);
+        } else if (!PreferenceUtils.getInstance(getActivity()).getUseGradientCenter()) {
+            removePreference(PreferenceUtils.GRADIENT_CENTER);
         }
     }
 
     @Override
     public void onSharedPreferenceChanged(SharedPreferences sharedPreferences,
              String key) {
-        if (key.equals(PreferenceUtils.USE_GRADIENT)) {
-            boolean useGradient = PreferenceUtils.getInstance(getActivity()).getUseGradient();
-            int titleResid = useGradient ? R.string.start_color_title : R.string.color_title;
-            findPreference(PreferenceUtils.START_COLOR).setTitle(titleResid);
+        if (key.equals(PreferenceUtils.USE_GRADIENT)
+                || key.equals(PreferenceUtils.GRADIENT_USE_CENTER)) {
+            updatePreferenceScreen();
         }
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        getPreferenceScreen().getSharedPreferences()
+                .registerOnSharedPreferenceChangeListener(this);
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        getPreferenceScreen().getSharedPreferences()
+                .unregisterOnSharedPreferenceChangeListener(this);
     }
 }

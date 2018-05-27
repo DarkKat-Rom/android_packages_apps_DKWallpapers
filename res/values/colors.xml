@@ -29,4 +29,7 @@
     <!-- General colors (used for all themes) -->
     <color name="wallpaper_preview_button_bar_background">#66000000</color> <!-- 40% black -->
     <color name="wallpaper_preview_button_bar_button_text_color">#ffffffff</color> <!-- white -->
+    <color name="wallpaper_default">@color/primary_darkkat</color>
+    <color name="wallpaper_default_center">@color/accent_darkkat</color>
+    <color name="wallpaper_default_end">@color/background_darkkat</color>
 </resources>

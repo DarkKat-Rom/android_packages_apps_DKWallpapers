@@ -14,7 +14,7 @@
 
         <activity
             android:name=".ColorWallpaperActivity"
-            android:label="@string/color_wallpaper_title"
+            android:label="@string/colored_wallpaper_title"
             android:theme="@android:style/Theme.Material.DayNight.NoActionBar.TranslucentDecor"
             android:icon="@mipmap/ic_color_wallpaper">
             <intent-filter>
