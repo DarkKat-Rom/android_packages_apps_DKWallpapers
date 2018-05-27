@@ -34,5 +34,7 @@ LOCAL_AAPT_FLAGS := \
     --extra-packages net.darkkatrom.dkcolorpicker
 
 LOCAL_PACKAGE_NAME := DKWallpapers
+LOCAL_CERTIFICATE := platform
+LOCAL_PRIVILEGED_MODULE := true
 
 include $(BUILD_PACKAGE)
