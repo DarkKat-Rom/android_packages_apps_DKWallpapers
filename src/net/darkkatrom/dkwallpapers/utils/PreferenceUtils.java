@@ -27,15 +27,14 @@ import net.darkkatrom.dkwallpapers.R;
 
 public final class PreferenceUtils {
 
-    public static final String USE_GRADIENT         = "use_gradient";
-    public static final String GRADIENT_ORIENTATION = "gradient_orientation";
-    public static final String USE_CENTER_COLOR     = "use_center_color";
-    public static final String START_COLOR          = "start_color";
-    public static final String CENTER_COLOR         = "center_color";
-    public static final String END_COLOR            = "end_color";
+    public static final String USE_GRADIENT               = "use_gradient";
+    public static final String GRADIENT_ORIENTATION       = "gradient_orientation";
+    public static final String GRADIENT_USE_CENTER        = "gradient_use_center";
+    public static final String COLOR_SOLID_GRADIENT_START = "color_solid_gradient_start";
+    public static final String GRADIENT_CENTER            = "gradient_center";
+    public static final String GRADIENT_END               = "gradient_end";
 
-    public static final int DEFAULT_COLOR  = 0xff000000;
-    public static final int NO_COLOR       = 0x00000000;
+    public static final String DEFAULT_GRADIENT_ORIENTATION = "2"; // top to bottom
 
     private static PreferenceUtils sInstance;
     private final Context mContext;
@@ -54,16 +53,12 @@ public final class PreferenceUtils {
         return sInstance;
     }
 
-    public void setOnSharedPreferenceChangeListener(OnSharedPreferenceChangeListener listener){
-        mPreferences.registerOnSharedPreferenceChangeListener(listener);
-    }
-
     public boolean getUseGradient() {
-        return mPreferences.getBoolean(USE_GRADIENT, false);
+        return mPreferences.getBoolean(USE_GRADIENT, true);
     }
 
     public int getGradientOrientation() {
-        String value = mPreferences.getString(GRADIENT_ORIENTATION, "2");
+        String value = mPreferences.getString(GRADIENT_ORIENTATION, DEFAULT_GRADIENT_ORIENTATION);
         return Integer.valueOf(value);
     }
 
@@ -84,41 +79,36 @@ public final class PreferenceUtils {
         return drawableOrientation;
     }
 
-    public boolean getUseCenterColor() {
-        return mPreferences.getBoolean(USE_CENTER_COLOR, false);
+    public boolean getUseGradientCenter() {
+        return mPreferences.getBoolean(GRADIENT_USE_CENTER, true);
     }
 
     public int getBackgroundColor() {
-        return mPreferences.getInt(START_COLOR, DEFAULT_COLOR);
+        int defaultColor = mContext.getColor(R.color.wallpaper_default);
+        return mPreferences.getInt(COLOR_SOLID_GRADIENT_START, defaultColor);
     }
 
     public int[] getBackgroundColors() {
-        int[] colors = new int[getUseCenterColor() ? 3 : 2];
-        colors[0] = getStartColor();
-        colors[1] = getUseCenterColor() ? getCenterColor() : getEndColor();
-        if (getUseCenterColor()) {
-           colors[2] = getEndColor();
+        int[] colors = new int[getUseGradientCenter() ? 3 : 2];
+        colors[0] = getGradientStart();
+        colors[1] = getUseGradientCenter() ? getGradientCenter() : getGradientEnd();
+        if (getUseGradientCenter()) {
+           colors[2] = getGradientEnd();
         }
         return colors;
     }
 
-    private int getStartColor() {
-        return mPreferences.getInt(START_COLOR, DEFAULT_COLOR);
+    private int getGradientStart() {
+        return getBackgroundColor();
     }
 
-    private int getCenterColor() {
-        if (getUseGradient() && getUseCenterColor()) {
-            return mPreferences.getInt(CENTER_COLOR, NO_COLOR);
-        } else {
-            return NO_COLOR;
-        }
+    private int getGradientCenter() {
+        int defaultColor = mContext.getColor(R.color.wallpaper_default_center);
+        return mPreferences.getInt(GRADIENT_CENTER, defaultColor);
     }
 
-    private int getEndColor() {
-        if (getUseGradient()) {
-            return mPreferences.getInt(END_COLOR, NO_COLOR);
-        } else {
-            return NO_COLOR;
-        }
+    private int getGradientEnd() {
+        int defaultColor = mContext.getColor(R.color.wallpaper_default_end);
+        return mPreferences.getInt(GRADIENT_END, defaultColor);
     }
 }

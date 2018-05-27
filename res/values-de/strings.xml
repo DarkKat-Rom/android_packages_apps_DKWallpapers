@@ -15,16 +15,24 @@
      See the License for the specific language governing permissions and
      limitations under the License.
 -->
-<resources xmlns:xliff="urn:oasis:names:tc:xliff:document:1.2">
-    <string name="app_name">DarkKat-Hintergrundbilder</string>
-    <string name="color_wallpaper_title">Farbiger Hintergrund</string>
+<resources>
+
+    <!-- General -->
+    <string name="app_name">DarkKat Farbiger-Hintergrund</string>
+    <string name="colored_wallpaper_title">Farbiger-Hintergrund</string>
+
+    <!-- Color picker -->
     <string name="pick_color_title">Farbe wählen</string>
+
+    <!-- Wallpaper preview -->
     <string name="set_wallpaper">Hintergrund festlegen</string>
     <string name="dialog_item_home_screen">Startbildschirm</string>
     <string name="dialog_item_lock_screen">Sperrbildschirm</string>
     <string name="dialog_item_home_and_lock_screen">Start- und Sperrbildschirm</string>
     <string name="dialog_cancel_title">Abbrechen</string>
-    <string name="customize_title">Anpassen</string>
+    <string name="customize_title">Hintergrund anpassen</string>
+
+    <!-- Customize wallpaper -->
     <string name="use_gradient_title">Farbverlauf</string>
     <string name="use_gradient_summary">Aktivieren um einen Farbverlauf als Hintergrund zu benutzen</string>
     <string name="gradient_orientation_title">Farbverlauf Ausrichtung</string>
@@ -33,10 +41,10 @@
     <string name="gradient_orientation_top_left_bottom_right">Von oben links nach unten rechts</string>
     <string name="gradient_orientation_top_bottom">Von oben nach unten</string>
     <string name="gradient_orientation_top_right_bottom_left">Von oben rechts nach unten links</string>
-    <string name="use_center_color_title">Mittelfarbe benutzen</string>
-    <string name="use_center_color_summary">Aktivieren um eine Mittelfarbe für den Farbverlauf zu benutzen</string>
-    <string name="start_color_title">Startfarbe</string>
-    <string name="color_title">Farbe</string>
-    <string name="center_color_title">Mittelfarbe</string>
-    <string name="end_color_title">Endfarbe</string>
+    <string name="gradient_use_center_title">Farbverlauf Mitte</string>
+    <string name="gradient_use_center_summary">Aktivieren um eine Farbe für die Mitte des Farbverlaufs zu benutzen</string>
+    <string name="color_solid_title">Farbe</string>
+    <string name="gradient_start_title">Farbverlauf Start</string>
+    <string name="gradient_center_title">Farbverlauf Mitte</string>
+    <string name="gradient_end_title">Farbverlauf Ende</string>
 </resources>
