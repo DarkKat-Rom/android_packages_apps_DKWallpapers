@@ -18,13 +18,12 @@
 
     <!-- Theme.Material.Light (Whiteout version) -->
 
-    <!-- App theme -->
-    <style name="CustomizeTheme" parent="@android:style/Theme.Material.DayNight">
-        <item name="android:windowLightStatusBar">true</item>
-        <item name="android:colorPrimary">@color/theme_primary</item>
-        <item name="android:colorPrimaryDark">@color/theme_primary_dark</item>
-        <item name="android:colorAccent">@color/theme_accent</item>
-    </style>
-
-    <style name="ThemeOverlay.LightStatusBar" parent="@style/CustomizeTheme" />
+    <!-- Always use light action bar and system bars -->
+    <style name="CustomizeTheme"
+            parent="@android:style/Theme.Material.DayNight.LightStatusBar.LightNavigationBar" />
+    <style name="CustomizeTheme.LightActionBar" />
+    <style name="CustomizeTheme.LightStatusBar" />
+    <style name="CustomizeTheme.LightNavigationBar" />
+    <style name="CustomizeTheme.LightActionBar.LightNavigationBar" />
+    <style name="CustomizeTheme.LightStatusBar.LightNavigationBar" />
 </resources>
