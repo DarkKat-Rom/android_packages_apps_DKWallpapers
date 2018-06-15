@@ -52,6 +52,7 @@ public class CustomizationsActivity extends Activity implements
     private boolean mLightNavigationBar = false;
     private boolean mIsBlackoutTheme = false;
     private boolean mIsWhiteoutTheme = false;
+    private int mThemeOverlayAccentResId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,7 +76,7 @@ public class CustomizationsActivity extends Activity implements
         mLightStatusBar = ThemeColorHelper.lightStatusBar(this, mDefaultPrimaryColor);
         mLightActionBar = ThemeColorHelper.lightActionBar(this, mDefaultPrimaryColor);
         mLightNavigationBar = ThemeColorHelper.lightNavigationBar(this, mDefaultPrimaryColor);
-        mIsBlackoutTheme = ThemeHelper.isWhiteoutTheme(this);
+        mIsBlackoutTheme = ThemeHelper.isBlackoutTheme(this);
         mIsWhiteoutTheme = ThemeHelper.isWhiteoutTheme(this);
 
         if (mLightActionBar && mLightNavigationBar) {
@@ -92,6 +93,11 @@ public class CustomizationsActivity extends Activity implements
             mThemeResId = R.style.CustomizeTheme;
         }
         setTheme(mThemeResId);
+
+        mThemeOverlayAccentResId = ThemeColorHelper.getThemeOverlayAccentResId(this);
+        if (mThemeOverlayAccentResId > 0) {
+            getTheme().applyStyle(mThemeOverlayAccentResId, true);
+        }
 
         int oldFlags = getWindow().getDecorView().getSystemUiVisibility();
         int newFlags = oldFlags;
@@ -136,8 +142,10 @@ public class CustomizationsActivity extends Activity implements
         boolean lightStatusBar = ThemeColorHelper.lightStatusBar(this, mDefaultPrimaryColor);
         boolean lightActionBar = ThemeColorHelper.lightActionBar(this, mDefaultPrimaryColor);
         boolean lightNavigationBar = ThemeColorHelper.lightNavigationBar(this, mDefaultPrimaryColor);
+        int themeOverlayAccentResId = ThemeColorHelper.getThemeOverlayAccentResId(this);
 
-        if (mCustomizeColors != customizeColors
+        if (mThemeOverlayAccentResId != themeOverlayAccentResId
+                || mCustomizeColors != customizeColors
                 || mPrimaryColor != primaryColor
                 || mColorizeNavigationBar != colorizeNavigationBar
                 || mLightStatusBar != lightStatusBar
@@ -178,57 +186,37 @@ public class CustomizationsActivity extends Activity implements
     }
 
     @Override
+    public boolean supportsTheming() {
+        return true;
+    }
+
+    @Override
     public int getThemeResId() {
-        return mThemeResId;
+        return R.style.CustomizeTheme;
     }
 
     @Override
-    public boolean customizeColors() {
-        return mCustomizeColors;
+    public int getThemeLightActionBarResId() {
+        return R.style.CustomizeTheme_LightActionBar;
     }
 
     @Override
-    public int getStatusBarColor() {
-        return mStatusBarColor;
+    public int getThemeLightStatusBarResId() {
+        return R.style.CustomizeTheme_LightStatusBar;
     }
 
     @Override
-    public int getPrimaryColor() {
-        return mPrimaryColor;
+    public int getThemeLightNavigationBarResId() {
+        return R.style.CustomizeTheme_LightNavigationBar;
     }
 
     @Override
-    public int getNavigationColor() {
-        return mNavigationColor;
+    public int getThemeLightActionBarLightNavigationBarResId() {
+        return R.style.CustomizeTheme_LightActionBar_LightNavigationBar;
     }
 
     @Override
-    public boolean colorizeNavigationBar() {
-        return mColorizeNavigationBar;
-    }
-
-    @Override
-    public boolean lightStatusBar() {
-        return mLightStatusBar;
-    }
-
-    @Override
-    public boolean lightActionBar() {
-        return mLightActionBar;
-    }
-
-    @Override
-    public boolean lightNavigationBar() {
-        return mLightNavigationBar;
-    }
-
-    @Override
-    public boolean isWhiteoutTheme() {
-        return mIsWhiteoutTheme;
-    }
-
-    @Override
-    public boolean isBlackoutTheme() {
-        return mIsBlackoutTheme;
+    public int getThemeLightStatusBarLightNavigationBarResId() {
+        return R.style.CustomizeTheme_LightStatusBar_LightNavigationBar;
     }
 }
