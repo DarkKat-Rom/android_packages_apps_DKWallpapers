@@ -239,4 +239,9 @@ public class CustomizationsActivity extends Activity implements
     public boolean isBlackoutTheme() {
         return mIsBlackoutTheme;
     }
+
+    @Override
+    public int getThemeOverlayAccentResId() {
+        return mThemeOverlayAccentResId;
+    }
 }
