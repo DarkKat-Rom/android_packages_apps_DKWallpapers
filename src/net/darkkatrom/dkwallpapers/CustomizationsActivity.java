@@ -186,62 +186,37 @@ public class CustomizationsActivity extends Activity implements
     }
 
     @Override
+    public boolean supportsTheming() {
+        return true;
+    }
+
+    @Override
     public int getThemeResId() {
-        return mThemeResId;
+        return R.style.CustomizeTheme;
     }
 
     @Override
-    public boolean customizeColors() {
-        return mCustomizeColors;
+    public int getThemeLightActionBarResId() {
+        return R.style.CustomizeTheme_LightActionBar;
     }
 
     @Override
-    public int getStatusBarColor() {
-        return mStatusBarColor;
+    public int getThemeLightStatusBarResId() {
+        return R.style.CustomizeTheme_LightStatusBar;
     }
 
     @Override
-    public int getPrimaryColor() {
-        return mPrimaryColor;
+    public int getThemeLightNavigationBarResId() {
+        return R.style.CustomizeTheme_LightNavigationBar;
     }
 
     @Override
-    public int getNavigationColor() {
-        return mNavigationColor;
+    public int getThemeLightActionBarLightNavigationBarResId() {
+        return R.style.CustomizeTheme_LightActionBar_LightNavigationBar;
     }
 
     @Override
-    public boolean colorizeNavigationBar() {
-        return mColorizeNavigationBar;
-    }
-
-    @Override
-    public boolean lightStatusBar() {
-        return mLightStatusBar;
-    }
-
-    @Override
-    public boolean lightActionBar() {
-        return mLightActionBar;
-    }
-
-    @Override
-    public boolean lightNavigationBar() {
-        return mLightNavigationBar;
-    }
-
-    @Override
-    public boolean isWhiteoutTheme() {
-        return mIsWhiteoutTheme;
-    }
-
-    @Override
-    public boolean isBlackoutTheme() {
-        return mIsBlackoutTheme;
-    }
-
-    @Override
-    public int getThemeOverlayAccentResId() {
-        return mThemeOverlayAccentResId;
+    public int getThemeLightStatusBarLightNavigationBarResId() {
+        return R.style.CustomizeTheme_LightStatusBar_LightNavigationBar;
     }
 }
