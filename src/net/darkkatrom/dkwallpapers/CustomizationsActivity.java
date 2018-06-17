@@ -52,6 +52,7 @@ public class CustomizationsActivity extends Activity implements
     private boolean mLightNavigationBar = false;
     private boolean mIsBlackoutTheme = false;
     private boolean mIsWhiteoutTheme = false;
+    private int mThemeOverlayAccentResId = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +93,11 @@ public class CustomizationsActivity extends Activity implements
             mThemeResId = R.style.CustomizeTheme;
         }
         setTheme(mThemeResId);
+
+        mThemeOverlayAccentResId = ThemeColorHelper.getThemeOverlayAccentResId(this);
+        if (mThemeOverlayAccentResId > 0) {
+            getTheme().applyStyle(mThemeOverlayAccentResId, true);
+        }
 
         int oldFlags = getWindow().getDecorView().getSystemUiVisibility();
         int newFlags = oldFlags;
@@ -136,8 +142,10 @@ public class CustomizationsActivity extends Activity implements
         boolean lightStatusBar = ThemeColorHelper.lightStatusBar(this, mDefaultPrimaryColor);
         boolean lightActionBar = ThemeColorHelper.lightActionBar(this, mDefaultPrimaryColor);
         boolean lightNavigationBar = ThemeColorHelper.lightNavigationBar(this, mDefaultPrimaryColor);
+        int themeOverlayAccentResId = ThemeColorHelper.getThemeOverlayAccentResId(this);
 
-        if (mCustomizeColors != customizeColors
+        if (mThemeOverlayAccentResId != themeOverlayAccentResId
+                || mCustomizeColors != customizeColors
                 || mPrimaryColor != primaryColor
                 || mColorizeNavigationBar != colorizeNavigationBar
                 || mLightStatusBar != lightStatusBar
