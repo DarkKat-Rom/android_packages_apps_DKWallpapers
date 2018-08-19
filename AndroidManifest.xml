@@ -27,7 +27,7 @@
         <activity
             android:name=".CustomizationsActivity"
             android:label="@string/customize_title"
-            android:theme="@style/CustomizeTheme" />
+            android:theme="@android:style/Theme.DarkKat.DayNight" />
 
         <activity-alias
             android:name=".LauncherActivity"
@@ -41,9 +41,9 @@
         </activity-alias>
 
         <activity
-            android:name="net.darkkatrom.dkcolorpicker.ColorPickerActivity"
+            android:name="net.darkkatrom.dkcolorpicker.activity.ColorPickerDKThemedActivity"
             android:label="@string/pick_color_title"
-            android:theme="@style/CustomizeTheme" />
+            android:theme="@android:style/Theme.DarkKat.DayNight" />
 
         <receiver android:name=".PartnerWallpapers">
             <intent-filter>
